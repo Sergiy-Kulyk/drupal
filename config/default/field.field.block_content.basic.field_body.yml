@@ -1,0 +1,30 @@
+uuid: bcb6043b-b5b8-4f18-9211-fc4472d8bc5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.basic
+    - field.storage.block_content.field_body
+    - filter.format.basic_html
+    - filter.format.full_html
+    - filter.format.plain_text
+    - filter.format.restricted_html
+  module:
+    - text
+id: block_content.basic.field_body
+field_name: field_body
+entity_type: block_content
+bundle: basic
+label: Body
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+    - restricted_html
+    - full_html
+    - plain_text
+field_type: text_long

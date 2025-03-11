@@ -1,0 +1,78 @@
+name: ctnext
+recipe: drupal10
+config:
+  php: '8.3'
+  via: 'nginx:1.24'
+  webroot: web
+  database: 'mysql:8.0'
+  xdebug: true
+  composer: []
+  config:
+    vhosts: .dev/lando/nginx/default.conf
+
+services:
+  appserver:
+    config:
+      php: .dev/lando/php/php.ini
+    build_as_root:
+      - apt-get update -y
+      - apt-get install cron -y
+    run_as_root:
+      - service cron start
+    run:
+      - crontab -u www-data .dev/lando/server/cron.txt
+  database:
+    config:
+      confd: .dev/lando/mysql
+    creds:
+      database: sigma.ctnext.local
+      user: sigma
+      password: '11009988'
+  mailhog:
+    type: mailhog
+    hogfrom:
+      - appserver
+  cache:
+    type: redis:7
+    config:
+      server: .dev/lando/redis/redis.conf
+  node:
+    type: node:18
+    build_as_root:
+      - /app/scripts/build-node.sh
+    scanner: false
+
+tooling:
+  drush:
+    cmd: ./bin/drush
+  xdebug-on:
+    service: appserver
+    description: Enable xdebug for nginx.
+    cmd: docker-php-ext-enable xdebug && pkill -o -USR2 php-fpm
+    user: root
+  xdebug-off:
+    service: appserver
+    description: Disable xdebug for nginx.
+    cmd: rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && pkill -o -USR2 php-fpm
+    user: root
+  cache-clear:
+    service: appserver
+    description: Completely clears the cache
+    cmd:
+      - cache: redis-cli flushall
+      - drush cr
+  npm:
+    service: node
+    cmd: npm
+  npx:
+    service: node
+    cmd: npx
+  yarn:
+    service: node
+    cmd: yarn
+
+proxy:
+  appserver_nginx:
+    - ctnext.sigma
+  mailhog:
+    - mail.ctnext.sigma

