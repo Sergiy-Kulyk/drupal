@@ -31,6 +31,7 @@ export function BlockBasic({ block }: BlockBasicProps) {
             {block.field_title}
           </p>
           {block.body && (
+            // Not secure way.
             <p className="text-[19px] leading-snug" dangerouslySetInnerHTML={{__html: block.body.value}}></p>
           )}
         </div>
