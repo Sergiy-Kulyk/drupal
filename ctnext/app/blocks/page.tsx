@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "A Next.js site powered by a Drupal backend.",
 }
 
-export default async function Home() {
+export default async function BasicBlocks() {
   const blocks = await drupal.getResourceCollection<DrupalBlock[]>(
     "block_content--basic",
     {
