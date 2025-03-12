@@ -15,6 +15,13 @@ export function HeaderNav() {
         >
           Read the docs
         </Link>
+        <Link
+          href="/blocks"
+          target="_self"
+          className="hover:text-blue-600"
+        >
+          Basic blocks page
+        </Link>
       </div>
     </header>
   )
