@@ -17,7 +17,7 @@ export default async function Home() {
         include: "field_image",
       },
       next: {
-        revalidate: 3600,
+        revalidate: 0,
       },
     }
   )
