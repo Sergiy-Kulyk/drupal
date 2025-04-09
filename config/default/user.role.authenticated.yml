@@ -15,6 +15,7 @@ dependencies:
     - filter
     - search
     - shortcut
+    - subrequests
     - system
 _core:
   default_config_hash: cFrlqjtkTfvY3RGccjJkPf1SGIfJ942IrxTLWAO4mgA
@@ -29,6 +30,7 @@ permissions:
   - 'access shortcuts'
   - 'access site-wide contact form'
   - 'delete own files'
+  - 'issue subrequests'
   - 'manage own commerce_payment_method'
   - 'post comments'
   - 'search content'

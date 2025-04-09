@@ -31,7 +31,7 @@ export default async function TagTerms() {
           console.log(term)
           return (
             <div key={term.id}>
-              <TermTag term={term} />
+              {/*<TermTag term={term} />*/}
               <hr className="my-2.5" />
             </div>
           )
