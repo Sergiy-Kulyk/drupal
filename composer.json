@@ -30,7 +30,8 @@
         "drupal/webform": "^6.3@beta",
         "drupal/paragraphs": "^1.19",
         "drush/drush": "^13.3",
-        "drupal/ultimate_cron": "^2.0@beta"
+        "drupal/ultimate_cron": "^2.0@beta",
+        "drupal/commerce": "^3.0"
     },
     "conflict": {
         "drupal/drupal": "*"

@@ -1,0 +1,10 @@
+uuid: 5746c148-ce5c-4a82-80c9-08b6c3a41375
+langcode: en
+status: true
+dependencies: {  }
+id: node.page
+site_resolver: entity_reference_field
+configuration:
+  field_name: null
+revalidator: cache_tag
+revalidator_configuration: {  }

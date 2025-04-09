@@ -1,0 +1,7 @@
+uuid: a6befe55-c013-4758-ba53-0a37d1d63efc
+langcode: en
+status: true
+dependencies: {  }
+id: color
+label: Color
+elementType: select

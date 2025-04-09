@@ -1,0 +1,23 @@
+uuid: 553d68a4-b606-4e47-be1a-3ace6685f50d
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - olivero_custom
+_core:
+  default_config_hash: pbbed0hdqGDF-_QWVVTWRAwgDIotFuAvWH5mWUZu0fA
+id: olivero_custom_search_form_wide
+theme: olivero_custom
+region: secondary_menu
+weight: -7
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  label_display: '0'
+  provider: search
+  page_id: null
+visibility: {  }

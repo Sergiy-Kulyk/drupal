@@ -1,0 +1,11 @@
+uuid: 91370d6a-342f-408e-8c96-aa1c9fdb64bb
+langcode: en
+status: true
+dependencies: {  }
+id: blog
+label: Blog
+base_url: 'https://example.com'
+preview_url: ''
+preview_secret: ''
+revalidate_url: ''
+revalidate_secret: ''
