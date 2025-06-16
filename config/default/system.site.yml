@@ -13,3 +13,7 @@ admin_compact_mode: false
 weight_select_max: 100
 default_langcode: en
 mail_notification: null
+cors:
+  allowedOrigins: '["http://localhost:3000"]'
+  allowedHeaders: "['Content-Type','Authorization','X-CSRF-Token']"
+  allowedMethods: "['GET','POST','OPTIONS']"

@@ -1,0 +1,20 @@
+uuid: c48f7972-1c17-48a6-be7b-b742e92222ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.profile.field_bio
+    - profile.type.profile
+id: profile.profile.default
+targetEntityType: profile
+bundle: profile
+mode: default
+content:
+  field_bio:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

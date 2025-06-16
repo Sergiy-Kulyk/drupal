@@ -1,0 +1,20 @@
+uuid: 5be7480c-122b-4b93-8d98-0ba1bb3d89af
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctnext_user
+  theme:
+    - olivero_custom
+id: olivero_custom_ctnextusergreetingblock
+theme: olivero_custom
+region: highlighted
+weight: -8
+provider: null
+plugin: ctnext_user_greeting
+settings:
+  id: ctnext_user_greeting
+  label: 'CTNEXT user greeting block.'
+  label_display: '0'
+  provider: ctnext_user
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: bf08bdc5-8eaf-4631-b2e9-d82d7aff7ec7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.profile.field_bio
+    - profile.type.profile
+id: profile.profile.default
+targetEntityType: profile
+bundle: profile
+mode: default
+content:
+  field_bio:
+    type: string_textarea
+    weight: 26
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  is_default: true

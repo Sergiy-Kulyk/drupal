@@ -1,13 +1,14 @@
 import { BlockBasic } from "@/components/blocks/block--basic"
-import { drupal } from "@/lib/drupal"
+import { getAuthenticatedDrupal } from "@/lib/csrf"
 import type { Metadata } from "next"
-import type {DrupalBlock} from "next-drupal"
+import type { DrupalBlock } from "next-drupal"
 
 export const metadata: Metadata = {
   description: "A Next.js site powered by a Drupal backend.",
 }
 
 export default async function BasicBlocks() {
+  const drupal = await getAuthenticatedDrupal()
   const blocks = await drupal.getResourceCollection<DrupalBlock[]>(
     "block_content--basic",
     {

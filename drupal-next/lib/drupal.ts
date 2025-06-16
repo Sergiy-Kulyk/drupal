@@ -5,11 +5,14 @@ const clientId = process.env.DRUPAL_CLIENT_ID as string
 const clientSecret = process.env.DRUPAL_CLIENT_SECRET as string
 
 export const drupal = new NextDrupal(baseUrl, {
-  // Enable to use authentication
-  // auth: {
-  //   clientId,
-  //   clientSecret,
-  // },
-  // withAuth: true,
-  // debug: true,
+  // Enable CSRF token authentication
+  withAuth: true,
+  // Add custom headers for CSRF token
+  headers: {
+    "Content-Type": "application/json",
+  },
+  // Add custom fetch options
+  fetchOptions: {
+    credentials: "include", // This is important for CSRF token to work
+  },
 })

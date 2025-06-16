@@ -1,0 +1,5 @@
+resources:
+  entity:
+    user:
+      GET:
+        'supported_auth[0]': basic_auth

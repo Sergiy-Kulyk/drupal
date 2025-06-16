@@ -31,7 +31,11 @@
         "drupal/paragraphs": "^1.19",
         "drush/drush": "^13.3",
         "drupal/ultimate_cron": "^2.0@beta",
-        "drupal/commerce": "^3.0"
+        "drupal/commerce": "^3.0",
+        "drupal/simple_oauth": "^6.0",
+        "drupal/key": "^1.19",
+        "drupal/jsonapi_extras": "^3.26",
+        "drupal/restui": "^1.22"
     },
     "conflict": {
         "drupal/drupal": "*"

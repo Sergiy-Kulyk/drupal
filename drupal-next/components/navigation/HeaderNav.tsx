@@ -1,5 +1,5 @@
 import { Link } from "@/components/navigation/Link"
-import { Logo } from "@/components/blocks/logo";
+import { Logo } from "@/components/blocks/logo"
 
 export function HeaderNav() {
   return (
@@ -19,11 +19,7 @@ export function HeaderNav() {
         >
           Read the docs
         </Link>
-        <Link
-          href="/blocks"
-          target="_self"
-          className="hover:text-blue-600"
-        >
+        <Link href="/blocks" target="_self" className="hover:text-blue-600">
           Basic blocks page
         </Link>
       </div>

@@ -1,0 +1,25 @@
+uuid: 188e8bc1-9332-4314-9c19-433a3140cf68
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - serialization
+    - simple_oauth
+    - user
+id: entity.user
+plugin_id: 'entity:user'
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+    - DELETE
+    - PATCH
+  formats:
+    - json
+    - xml
+  authentication:
+    - basic_auth
+    - oauth2
+    - cookie

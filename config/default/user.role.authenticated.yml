@@ -29,6 +29,7 @@ permissions:
   - 'access content'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'access user profiles'
   - 'delete own files'
   - 'issue subrequests'
   - 'manage own commerce_payment_method'

@@ -1,0 +1,16 @@
+uuid: 1d782472-42ff-4ce4-a4db-55d87a8014c3
+langcode: en
+status: true
+dependencies: {  }
+third_party_settings:
+  commerce_order:
+    customer_profile_type: false
+id: profile
+label: Profile
+display_label: ''
+multiple: true
+registration: false
+roles:
+  administrator: administrator
+allow_revisions: true
+new_revision: true
