@@ -36,7 +36,8 @@
         "drupal/key": "^1.19",
         "drupal/jsonapi_extras": "^3.26",
         "drupal/restui": "^1.22",
-        "drupal/devel": "^5.3"
+        "drupal/devel": "^5.3",
+        "drupal/rules": "^4.0"
     },
     "conflict": {
         "drupal/drupal": "*"
