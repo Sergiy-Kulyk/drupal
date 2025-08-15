@@ -1,0 +1,4 @@
+latest_articles.main:
+  css:
+    theme:
+      assets/css/main.css: {}

@@ -1,0 +1,21 @@
+uuid: 92cecafd-00db-4abf-84bd-e34c4257c1c0
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctnext_rest
+    - serialization
+    - user
+id: ctnext_rest_custom_rest
+plugin_id: ctnext_rest_custom_rest
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+    - DELETE
+    - PATCH
+  formats:
+    - json
+  authentication:
+    - cookie

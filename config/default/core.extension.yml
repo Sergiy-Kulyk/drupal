@@ -29,10 +29,13 @@ module:
   consumers: 0
   contact: 0
   contextual: 0
+  ctnext_rest: 0
   ctnext_user: 0
   datetime: 0
   dblog: 0
   decoupled_router: 0
+  devel: 0
+  devel_generate: 0
   dynamic_page_cache: 0
   editor: 0
   entity: 0
@@ -48,6 +51,7 @@ module:
   jsonapi: 0
   jsonapi_extras: 0
   key: 0
+  latest_articles: 0
   layout_builder: 0
   layout_discovery: 0
   link: 0

@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        },
+        "files": [
+            "lib/functions.php"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.3"
+    }
+}

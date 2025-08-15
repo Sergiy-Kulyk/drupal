@@ -1,0 +1,4 @@
+services:
+  Drupal\latest_articles\Hook\LatestArticlesHooks:
+    class: Drupal\latest_articles\Hook\LatestArticlesHooks
+    autowire: true

@@ -1,0 +1,20 @@
+uuid: ebf23ce3-bcbe-4b9a-8117-613cc68d5dcc
+langcode: en
+status: true
+dependencies:
+  module:
+    - latest_articles
+  theme:
+    - olivero_custom
+id: olivero_custom_latestarticlesblock
+theme: olivero_custom
+region: content
+weight: 0
+provider: null
+plugin: latest_articles_block
+settings:
+  id: latest_articles_block
+  label: 'Latest Articles Block'
+  label_display: visible
+  provider: latest_articles
+visibility: {  }

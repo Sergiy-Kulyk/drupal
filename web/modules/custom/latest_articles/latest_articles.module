@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Module file.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\latest_articles\Hook\LatestArticlesHooks;
+
+
+/**
+ * Implements hook_help().
+ */
+function latest_articles_help($route_name, RouteMatchInterface $route_match) {
+  return \Drupal::service(LatestArticlesHooks::class)->help($route_name, $route_match);
+}
+
+/**
+ * Implements hook_theme().
+ */
+function latest_articles_theme() {
+  return \Drupal::service(LatestArticlesHooks::class)->theme();
+}

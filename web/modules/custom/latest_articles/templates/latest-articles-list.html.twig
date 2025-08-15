@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Latest Articles List.
+ *
+ * Available variables:
+ * - articles_items: Array of articles.
+ */
+#}
+
+{% if articles_items is not empty %}
+  <div class="articles-items-list">
+    {% for item in articles_items %}
+      <article class="article-item" data-nid="{{ item.nid }}">
+        <div class="article-item-content">
+          <h3 class="article-title">
+            {{ item.title }}
+          </h3>
+          {% if item.teaser %}
+            <div class="article-teaser">
+              {{ item.teaser|raw }}
+            </div>
+          {% endif %}
+          <div class="article-actions btn-read-more">
+            {{ item.link }}
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="no-articles">
+    <p>{{ 'No articles found.'|t }}</p>
+  </div>
+{% endif %}

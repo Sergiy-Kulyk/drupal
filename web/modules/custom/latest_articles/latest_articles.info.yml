@@ -1,0 +1,8 @@
+name: 'Latest Articles'
+type: module
+description: 'Custom module that provides a block with a list of latest Articles content type.'
+core_version_requirement: ^10 | ^11
+package: Custom
+dependencies:
+  - drupal:node
+  - drupal:block

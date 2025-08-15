@@ -43,6 +43,8 @@ services:
     scanner: false
 
 tooling:
+  phpunit:
+    cmd: ./bin/phpunit
   drush:
     cmd: ./bin/drush
   xdebug-on:

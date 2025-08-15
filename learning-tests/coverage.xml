@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1754903145">
+  <project timestamp="1754903145" name="Clover Coverage">
+    <package name="App">
+      <file name="/srv/ctnext/learning-tests/src/App/Amount.php">
+        <class name="App\Amount" namespace="App">
+          <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
+        </class>
+        <line num="11" type="method" name="__construct" visibility="public" complexity="2" crap="2" count="2"/>
+        <line num="12" type="stmt" count="2"/>
+        <line num="13" type="stmt" count="1"/>
+        <line num="15" type="stmt" count="1"/>
+        <line num="18" type="method" name="getCents" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="19" type="stmt" count="1"/>
+        <metrics loc="22" ncloc="22" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
+      </file>
+      <file name="/srv/ctnext/learning-tests/src/App/Person.php">
+        <class name="App\Person" namespace="App">
+          <metrics complexity="11" methods="7" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="7" elements="20" coveredelements="10"/>
+        </class>
+        <line num="14" type="method" name="getName" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="15" type="stmt" count="0"/>
+        <line num="21" type="method" name="getSurname" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="22" type="stmt" count="0"/>
+        <line num="28" type="method" name="getGender" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="29" type="stmt" count="0"/>
+        <line num="35" type="method" name="setGender" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="36" type="stmt" count="2"/>
+        <line num="42" type="method" name="setName" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="43" type="stmt" count="2"/>
+        <line num="49" type="method" name="setSurname" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="50" type="stmt" count="1"/>
+        <line num="53" type="method" name="getFullName" visibility="public" complexity="5" crap="6.97" count="2"/>
+        <line num="54" type="stmt" count="2"/>
+        <line num="55" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="1"/>
+        <line num="58" type="stmt" count="1"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="63" type="stmt" count="0"/>
+        <metrics loc="66" ncloc="48" classes="1" methods="7" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="7" elements="20" coveredelements="10"/>
+      </file>
+    </package>
+    <file name="/srv/ctnext/learning-tests/src/Mailer.php">
+      <class name="Mailer" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+      </class>
+      <line num="9" type="method" name="sendMail" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="10" type="stmt" count="0"/>
+      <line num="11" type="stmt" count="0"/>
+      <line num="12" type="stmt" count="0"/>
+      <metrics loc="17" ncloc="17" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+    </file>
+    <file name="/srv/ctnext/learning-tests/src/NotificationException.php">
+      <class name="NotificationException" namespace="global">
+        <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </class>
+      <metrics loc="8" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/srv/ctnext/learning-tests/src/NotificationsService.php">
+      <class name="NotificationsService" namespace="global">
+        <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="7" coveredelements="7"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="9" type="method" name="sendNotification" visibility="public" complexity="2" crap="2" count="3"/>
+      <line num="10" type="stmt" count="3"/>
+      <line num="13" type="stmt" count="3"/>
+      <line num="14" type="stmt" count="1"/>
+      <line num="15" type="stmt" count="1"/>
+      <metrics loc="20" ncloc="20" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="7" coveredelements="7"/>
+    </file>
+    <file name="/srv/ctnext/learning-tests/src/Queue.php">
+      <class name="Queue" namespace="global">
+        <metrics complexity="4" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
+      </class>
+      <line num="8" type="method" name="push" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="9" type="stmt" count="2"/>
+      <line num="12" type="method" name="pop" visibility="public" complexity="2" crap="2" count="3"/>
+      <line num="13" type="stmt" count="3"/>
+      <line num="14" type="stmt" count="1"/>
+      <line num="16" type="stmt" count="2"/>
+      <line num="19" type="method" name="getSize" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="20" type="stmt" count="3"/>
+      <metrics loc="24" ncloc="24" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
+    </file>
+    <metrics files="6" loc="157" ncloc="139" classes="5" methods="15" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="30" coveredstatements="21" elements="45" coveredelements="31"/>
+  </project>
+</coverage>

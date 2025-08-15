@@ -35,7 +35,8 @@
         "drupal/simple_oauth": "^6.0",
         "drupal/key": "^1.19",
         "drupal/jsonapi_extras": "^3.26",
-        "drupal/restui": "^1.22"
+        "drupal/restui": "^1.22",
+        "drupal/devel": "^5.3"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -130,5 +131,8 @@
                 "      composer remove drupal/core-project-message"
             ]
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
     }
 }
