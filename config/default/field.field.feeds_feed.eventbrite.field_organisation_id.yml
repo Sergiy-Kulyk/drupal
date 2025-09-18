@@ -1,0 +1,19 @@
+uuid: 36d7567e-8c73-4a81-9aab-1d3099064fed
+langcode: en
+status: true
+dependencies:
+  config:
+    - feeds.feed_type.eventbrite
+    - field.storage.feeds_feed.field_organisation_id
+id: feeds_feed.eventbrite.field_organisation_id
+field_name: field_organisation_id
+entity_type: feeds_feed
+bundle: eventbrite
+label: 'Organisation ID'
+description: 'The list of organizations will be provided in this field after adding a Private Key.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

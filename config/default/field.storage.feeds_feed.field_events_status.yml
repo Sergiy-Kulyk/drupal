@@ -1,0 +1,39 @@
+uuid: 447a7347-3a50-428c-90f1-f0d870f2a985
+langcode: en
+status: true
+dependencies:
+  module:
+    - feeds
+    - options
+id: feeds_feed.field_events_status
+field_name: field_events_status
+entity_type: feeds_feed
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: live
+      label: Live
+    -
+      value: started
+      label: Started
+    -
+      value: ended
+      label: Ended
+    -
+      value: completed
+      label: Completed
+    -
+      value: draft
+      label: Draft
+    -
+      value: canceled
+      label: Canceled
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

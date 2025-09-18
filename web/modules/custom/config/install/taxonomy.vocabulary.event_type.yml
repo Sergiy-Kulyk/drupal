@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Event type'
+vid: event_type
+description: 'Six event types used to categorise branch events. Used as filters and thumbnail images on search page.'
+weight: -7
+new_revision: false

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\App;
+namespace Drupal\ctnext_user\App;
 
 class Person {
 

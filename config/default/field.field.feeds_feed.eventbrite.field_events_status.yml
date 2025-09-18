@@ -1,0 +1,23 @@
+uuid: 05f88360-bfd0-41ef-944f-716f556ac824
+langcode: en
+status: true
+dependencies:
+  config:
+    - feeds.feed_type.eventbrite
+    - field.storage.feeds_feed.field_events_status
+  module:
+    - options
+id: feeds_feed.eventbrite.field_events_status
+field_name: field_events_status
+entity_type: feeds_feed
+bundle: eventbrite
+label: 'Events status'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: live
+default_value_callback: ''
+settings: {  }
+field_type: list_string

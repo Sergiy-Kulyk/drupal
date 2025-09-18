@@ -1,0 +1,23 @@
+uuid: 7ed2dd34-5cfc-4f10-8796-d1e5aaf25783
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_latitude
+    - node.type.event
+id: node.event.field_latitude
+field_name: field_latitude
+entity_type: node
+bundle: event
+label: Latitude
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: float

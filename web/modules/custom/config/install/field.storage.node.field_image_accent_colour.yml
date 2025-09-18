@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_image_accent_colour
+field_name: field_image_accent_colour
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: nct_image_accent_color_light_green
+      label: 'NCT Light Green'
+    -
+      value: nct_image_accent_color_dark_green
+      label: 'NCT Dark Green'
+    -
+      value: nct_image_accent_color_purple
+      label: Purple
+    -
+      value: nct_image_accent_color_blue
+      label: Blue
+    -
+      value: nct_image_accent_color_yellow
+      label: Yellow
+    -
+      value: nct_image_accent_color_orange
+      label: Orange
+    -
+      value: nct_image_accent_color_pink
+      label: Pink
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

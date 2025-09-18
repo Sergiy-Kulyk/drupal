@@ -1,0 +1,5 @@
+name: CTNEXT Tests Example
+type: module
+description: 'Provides functionality for users.'
+package: CTNEXT
+core_version_requirement: ^10 || ^11

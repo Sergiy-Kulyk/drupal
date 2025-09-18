@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image_accent_colour
+    - node.type.event
+  module:
+    - options
+id: node.event.field_image_accent_colour
+field_name: field_image_accent_colour
+entity_type: node
+bundle: event
+label: 'Select an image accent colour'
+description: "This will add an accent colour to the top of the event image. Select one of NCT's brand colours."
+required: false
+translatable: true
+default_value:
+  -
+    value: image_accent_color_blue
+default_value_callback: ''
+settings: {  }
+field_type: list_string

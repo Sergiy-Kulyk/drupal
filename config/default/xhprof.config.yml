@@ -1,0 +1,13 @@
+_core:
+  default_config_hash: rzLRjfCTsgd4s021DeXFUboiQb_74hMz6pmmst50Neo
+enabled: true
+extension: xhprof
+exclude: "/contextual/*\r\n/toolbar/*\r\n/edit/*\r\n/admin/*\r\n/profiler/*\r\n*.js\r\n*.css"
+interval: 0
+flags:
+  FLAGS_CPU: FLAGS_CPU
+  FLAGS_MEMORY: FLAGS_MEMORY
+  FLAGS_NO_BUILTINS: '0'
+exclude_indirect_functions: false
+storage: xhprof.file_storage
+show_summary_toolbar: null

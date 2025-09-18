@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - feeds.feed_type.eventbrite
+    - field.storage.feeds_feed.field_color
+  module:
+    - options
+id: feeds_feed.eventbrite.field_color
+field_name: field_color
+entity_type: feeds_feed
+bundle: eventbrite
+label: Color
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: image_accent_color_light_green
+default_value_callback: ''
+settings: {  }
+field_type: list_string

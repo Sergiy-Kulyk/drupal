@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - feeds.feed_type.eventbrite
+    - field.storage.feeds_feed.field_api_key
+id: feeds_feed.eventbrite.field_api_key
+field_name: field_api_key
+entity_type: feeds_feed
+bundle: eventbrite
+label: 'Private token'
+description: 'Private token can be added or found on the https://www.eventbrite.com/account-settings/apps page.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

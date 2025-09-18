@@ -1,0 +1,35 @@
+version: "3.7"
+services:
+
+    php:
+        build: docker/php
+        ports:
+            - "8080:80"
+        environment:
+            PHP_IDE_CONFIG: serverName=host.docker.internal
+        volumes:
+            - .:/var/www/phpunit
+        networks:
+            phpunit:
+                aliases:
+                    - phpunit.local
+        depends_on:
+          - mysql
+
+    mysql:
+        build:
+            context: docker/mysql
+        ports:
+            - "3307:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: pluralsight
+            MYSQL_USER: pluralsight
+            MYSQL_PASSWORD: pluralsight
+            MYSQL_DATABASE: pluralsight
+        networks:
+            phpunit:
+                aliases:
+                    - mysql.phpunit.local
+networks:
+    phpunit:
+        driver: "bridge"

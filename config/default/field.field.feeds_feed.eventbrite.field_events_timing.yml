@@ -1,0 +1,23 @@
+uuid: b52a182a-6468-4014-ac5d-39ba224b3482
+langcode: en
+status: true
+dependencies:
+  config:
+    - feeds.feed_type.eventbrite
+    - field.storage.feeds_feed.field_events_timing
+  module:
+    - options
+id: feeds_feed.eventbrite.field_events_timing
+field_name: field_events_timing
+entity_type: feeds_feed
+bundle: eventbrite
+label: 'Events Timing'
+description: 'Defines which events will be pulled from the API.'
+required: true
+translatable: false
+default_value:
+  -
+    value: current_future
+default_value_callback: ''
+settings: {  }
+field_type: list_string

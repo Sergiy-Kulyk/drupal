@@ -1,0 +1,9 @@
+uuid: 6cae587f-a0e5-4d08-ad7c-63655ba5c088
+langcode: en
+status: true
+dependencies: {  }
+name: 'Event type'
+vid: event_type
+description: 'Six event types used to categorise branch events. Used as filters and thumbnail images on search page.'
+weight: -7
+new_revision: false

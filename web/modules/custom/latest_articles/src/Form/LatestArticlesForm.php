@@ -8,6 +8,7 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\latest_articles\LatestArticlesService;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -17,9 +18,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class LatestArticlesForm extends FormBase {
 
   /**
-   * The entity type manager.
+   * Articles service.
    */
-  protected $entityTypeManager;
+  protected $articlesService;
 
   /**
    * Renderer.
@@ -27,20 +28,15 @@ class LatestArticlesForm extends FormBase {
   protected $renderer;
 
   /**
-   * Items per page.
-   */
-  const ITEMS_PER_PAGE = 3;
-
-  /**
    * Constructor.
    *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   Entity type manager.
+   * @param \Drupal\latest_articles\LatestArticlesService $articles_service
+   *   Articles service.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   Renderer.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, RendererInterface $renderer) {
-    $this->entityTypeManager = $entity_type_manager;
+  public function __construct(LatestArticlesService $articles_service, RendererInterface $renderer) {
+    $this->articlesService = $articles_service;
     $this->renderer = $renderer;
   }
 
@@ -49,7 +45,7 @@ class LatestArticlesForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity_type.manager'),
+      $container->get('latest_articles.articles_service'),
       $container->get('renderer')
     );
   }
@@ -69,7 +65,7 @@ class LatestArticlesForm extends FormBase {
       $articles_items = $form_state->get('items');
       $loaded_nodes = $form_state->get('nodes');
       $offset = count($articles_items);
-      $result = $this->getArticlesItems($offset);
+      $result = $this->articlesService->getArticlesItems($offset);
       $articles_items = [
         ...$articles_items,
         ...$result['items']
@@ -79,13 +75,13 @@ class LatestArticlesForm extends FormBase {
         ...$result['nodes']
       ];
     } else {
-      $result = $this->getArticlesItems();
+      $result = $this->articlesService->getArticlesItems();
       $articles_items = $result['items'];
       $loaded_nodes = $result['nodes'];
     }
     $form_state->set('items', $articles_items);
     $form_state->set('nodes', $loaded_nodes);
-    $total_items = $this->getTotalArticlesItems();
+    $total_items = $this->articlesService->getTotalArticlesItems();
     $form['articles_container'] = [
       '#type' => 'container',
       '#attributes' => [
@@ -125,94 +121,6 @@ class LatestArticlesForm extends FormBase {
    */
   public function loadMoreCallback(array &$form, FormStateInterface $form_state) {
     return $form['articles_container'];
-  }
-
-  /**
-   * Get articles.
-   *
-   * @param int $offset
-   *   Items to skip.
-   * @param int $limit
-   *   Number of items.
-   *
-   * @return array
-   *   Array with items and loaded nodes.
-   */
-  protected function getArticlesItems(int $offset = 0, int $limit = self::ITEMS_PER_PAGE): array {
-    $node_storage = $this->entityTypeManager->getStorage('node');
-    $query = $node_storage->getQuery()
-      ->accessCheck()
-      ->condition('type', 'article')
-      ->condition('status', 1)
-      ->sort('created', 'DESC')
-      ->range($offset, $limit);
-
-    $nids = $query->execute();
-
-    if (empty($nids)) {
-      return ['items' => [], 'nodes' => []];
-    }
-
-    $nodes = $node_storage->loadMultiple($nids);
-    $articles_items = [];
-    foreach ($nodes as $node) {
-      $articles_items[] = [
-        'title' => $node->label(),
-        'teaser' => $this->getTeaser($node),
-        'link' => $node->toLink($this->t('Read More'))->toRenderable(),
-        'nid' => $node->id(),
-      ];
-    }
-
-    return [
-      'items' => $articles_items,
-      'nodes' => $nodes,
-    ];
-  }
-
-  /**
-   * Return total number of items.
-   *
-   * @return int
-   *   Number of articles.
-   */
-  protected function getTotalArticlesItems(): int {
-    $node_storage = $this->entityTypeManager->getStorage('node');
-    $query = $node_storage->getQuery()
-      ->condition('type', 'article')
-      ->condition('status', 1)
-      ->accessCheck();
-
-    return $query->count()->execute();
-  }
-
-  /**
-   * Return teaser text.
-   *
-   * @param \Drupal\node\NodeInterface $node
-   *   Node.
-   *
-   * @return string|null
-   *   Text.
-   *
-   * @throws \Drupal\Core\TypedData\Exception\MissingDataException
-   */
-  protected function getTeaser(NodeInterface $node): ?string {
-    $teaser = NULL;
-    if ($node->hasField('body') && !$node->get('body')->isEmpty()) {
-      $body = $node->get('body')->first();
-      if ($body) {
-        $teaser = $body->get('summary')->getValue();
-        if (empty($teaser)) {
-          $body_value = $body->get('value')->getValue();
-          if (!empty($body_value)) {
-            $teaser = text_summary($body_value, NULL, 200);
-          }
-        }
-      }
-    }
-
-    return $teaser;
   }
 
   /**

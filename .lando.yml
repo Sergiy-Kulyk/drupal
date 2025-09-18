@@ -17,10 +17,31 @@ services:
     build_as_root:
       - apt-get update -y
       - apt-get install cron -y
+      - pecl install xhprof && echo "extension=xhprof.so" > $PHP_INI_DIR/conf.d/xhprof.ini
     run_as_root:
       - service cron start
     run:
       - crontab -u www-data .dev/lando/server/cron.txt
+    build:
+      - mkdir -p $LANDO_WEBROOT/sites/simpletest/browser_output
+    overrides:
+      environment:
+        # See https://agile.coop/blog/drupal-phpunit-tests-lando/
+        # Based on https://github.com/lando/lando/pull/1092/files
+        # See also https://github.com/lando/lando/issues/360
+        SYMFONY_DEPRECATIONS_HELPER: 'disabled'
+        BROWSERTEST_OUTPUT_BASE_URL: 'http://ctnext.lndo.site/'
+        SIMPLETEST_BASE_URL: 'http://ctnext.lndo.site/'
+        SIMPLETEST_DB: 'mysql://sigma:11009988@database/sigma.ctnext.local'
+        BROWSERTEST_OUTPUT_DIRECTORY: '/app/web/sites/simpletest/browser_output'
+        # Note the URL here must correspond to the name of the service.
+        MINK_DRIVER_ARGS_WEBDRIVER: '["chrome", {"browserName":"chrome","goog:chromeOptions":{"w3c":false, "args":["--disable-gpu","--headless", "--no-sandbox", "--disable-dev-shm-usage"]}}, "http://chrome:9515"]'
+  chrome:
+    type: compose
+    services:
+      image: drupalci/webdriver-chromedriver:production
+      command: chromedriver --log-path=/tmp/chromedriver.log --no-sandbox --headless --verbose --whitelisted-ips= --allowed-origins=*
+
   database:
     config:
       confd: .dev/lando/mysql
@@ -28,14 +49,17 @@ services:
       database: sigma.ctnext.local
       user: sigma
       password: '11009988'
+
   mailhog:
     type: mailhog
     hogfrom:
       - appserver
+
   cache:
     type: redis:7
     config:
       server: .dev/lando/redis/redis.conf
+
   node:
     type: node:18
     build_as_root:
@@ -43,8 +67,11 @@ services:
     scanner: false
 
 tooling:
-  phpunit:
-    cmd: ./bin/phpunit
+  test:
+    service: appserver
+    description: Run all PHPUnit tests
+    cmd:
+      - sh .dev/lando/phpunit/test.sh
   drush:
     cmd: ./bin/drush
   xdebug-on:

@@ -1,0 +1,184 @@
+uuid: 01b71d7f-caae-4f5f-bfe7-302355d7378e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.event.body
+    - field.field.node.event.field_address_line_1
+    - field.field.node.event.field_address_line_2
+    - field.field.node.event.field_cost_pricing
+    - field.field.node.event.field_county
+    - field.field.node.event.field_event_organiser
+    - field.field.node.event.field_event_type
+    - field.field.node.event.field_latitude
+    - field.field.node.event.field_location_name
+    - field.field.node.event.field_longitude
+    - field.field.node.event.field_online
+    - field.field.node.event.field_postcode
+    - field.field.node.event.field_tickets_link
+    - node.type.event
+  module:
+    - feeds_log
+    - node
+third_party_settings:
+  feeds_log:
+    status: true
+    operations:
+      created: created
+      updated: updated
+      deleted: deleted
+      skipped: skipped
+      failed: failed
+      cleaned: cleaned
+    items:
+      created: created
+      updated: updated
+      deleted: deleted
+      skipped: skipped
+      failed: failed
+    source: true
+label: Eventbrite
+id: eventbrite
+description: 'Eventbrite API Events.'
+help: 'Imports Eventbrite API Events.'
+import_period: 900
+fetcher: eventbrite_events_fetcher
+fetcher_configuration: {  }
+parser: eventbrite_events_response
+parser_configuration: {  }
+processor: eventbrite_node
+processor_configuration:
+  values:
+    type: event
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: 'entity:unpublish_action:node'
+  skip_hash_check: false
+  skip_validation: false
+  skip_validation_types: {  }
+  authorize: true
+  revision: true
+  expire: -1
+  owner_feed_author: true
+  owner_id: 0
+custom_sources:
+  buy_tickets:
+    value: 'Buy Tickets'
+    label: 'Buy Tickets'
+    machine_name: buy_tickets
+    type: blank
+mappings:
+  -
+    target: field_address_line_1
+    map:
+      value: field_address_line_1
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_address_line_2
+    map:
+      value: field_address_line_2
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: uid
+    map:
+      target_id: 'parent:uid'
+    settings:
+      language: ''
+      reference_by: uid
+      autocreate: 0
+      autocreate_bundle: false
+  -
+    target: created
+    map:
+      value: 'parent:imported'
+    settings:
+      language: null
+      timezone: UTC
+  -
+    target: field_county
+    map:
+      value: field_county
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_latitude
+    map:
+      value: field_latitude
+    settings:
+      language: null
+  -
+    target: field_longitude
+    map:
+      value: field_longitude
+    settings:
+      language: null
+  -
+    target: field_location_name
+    map:
+      value: field_location_name
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_tickets_link
+    map:
+      uri: field_tickets_link
+      title: ''
+    settings:
+      language: null
+  -
+    target: field_event_organiser
+    map:
+      value: field_event_organiser
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: body
+    map:
+      value: body
+      summary: ''
+    settings:
+      language: null
+      format: plain_text
+  -
+    target: field_cost_pricing
+    map:
+      value: field_cost_pricing
+    settings:
+      language: null
+  -
+    target: field_postcode
+    map:
+      value: field_postcode
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: title
+    map:
+      value: title
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_online
+    map:
+      value: field_online
+    settings:
+      language: null
+  -
+    target: field_event_type
+    map:
+      target_id: field_event_type
+    settings:
+      language: ''
+      reference_by: tid
+      autocreate: 0
+      autocreate_bundle: event_type

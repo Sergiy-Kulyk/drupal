@@ -1,0 +1,10 @@
+services:
+  eventbrite.eventbrite_api_service:
+    class: Drupal\eventbrite\EventbriteClient
+    arguments:
+      - '@http_client'
+  eventbrite.route_subscriber:
+    class: Drupal\eventbrite\Routing\RouteSubscriber
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }

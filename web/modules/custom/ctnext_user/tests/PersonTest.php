@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use App\Person;
+use Drupal\ctnext_user\App\Person;
 
 final class PersonTest extends TestCase {
 

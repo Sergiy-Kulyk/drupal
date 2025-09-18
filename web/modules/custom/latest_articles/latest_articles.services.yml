@@ -2,3 +2,6 @@ services:
   Drupal\latest_articles\Hook\LatestArticlesHooks:
     class: Drupal\latest_articles\Hook\LatestArticlesHooks
     autowire: true
+  latest_articles.articles_service:
+    class: Drupal\latest_articles\LatestArticlesService
+    arguments: ['@entity_type.manager']

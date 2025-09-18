@@ -1,0 +1,165 @@
+<?php
+
+/**
+ * @file
+ * Contains eventbrite.module.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function eventbrite_form_feeds_feed_eventbrite_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\feeds\Entity\Feed $entity */
+  $entity = $form_state->getFormObject()->getEntity();
+  if ($entity->hasField('field_api_key')) {
+    $form['#prefix'] = '<div id="feed-org-id-form-wrapper">';
+    $form['#suffix'] = '</div>';
+    $form["field_api_key"]["widget"][0]["value"]['#ajax'] = [
+      'callback' => 'eventbrite_form_ajax_update',
+      'disable-refocus' => TRUE, // Or TRUE to prevent re-focusing on the triggering element.
+      'event' => 'change',
+      'wrapper' => 'feed-org-id-form-wrapper',
+      'progress' => [
+        'type' => 'throbber',
+        'message' => t('Pulling organizations...'),
+      ],
+    ];
+    $state_value = isset($form_state->getValue('field_api_key')[0]['value']) && $form_state->getValue('field_api_key')[0]['value'] !== '' && $form_state->getValue('field_api_key')[0]['value'] !== NULL;
+    if (!$entity->get('field_api_key')->isEmpty() || $state_value) {
+      $key = $entity->get('field_api_key')->value;
+      if ($key == NULL || ($state_value && $entity->get('field_api_key')->value !== $form_state->getValue('field_api_key')[0]['value'])) {
+        $key = $form_state->getValue('field_api_key')[0]['value'];
+      }
+      eventbrite_form_update_organization_field($form, $form_state, $key);
+    }
+  }
+}
+
+/**
+ * Ajax form update when the Private Token is entered.
+ *
+ * @param array $form
+ *   Form render array.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state.
+ *
+ * @return array
+ *   Updated form render array.
+ */
+function eventbrite_form_ajax_update(array &$form, FormStateInterface $form_state) {
+  $key = $form_state->getValue('field_api_key')[0]['value'];
+  if (!empty($key)) {
+    eventbrite_form_update_organization_field($form, $form_state, $key);
+  }
+  return $form;
+}
+
+/**
+ * Updates form organization field with predefined organizations from API.
+ *
+ * @param array $form
+ *   Form array.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state.
+ * @param $key
+ *   Api key.
+ *
+ * @return void
+ *   Void.
+ */
+function eventbrite_form_update_organization_field(array &$form, FormStateInterface $form_state, $key) {
+  /** @var \Drupal\eventbrite\EventbriteClient $eventbrite_client */
+  $eventbrite_client = \Drupal::service('eventbrite.eventbrite_api_service');
+  try {
+    $organizations_list = $eventbrite_client->getOrganizations($key);
+  } catch (\Exception $e) {
+    \Drupal::messenger()->addWarning(t('Wrong Private Token key.'));
+    return;
+  }
+  $organizations_options = [];
+  if (isset($organizations_list['pages_data']) && !empty($organizations_list['pages_data'])) {
+    foreach ($organizations_list['pages_data'] as $list_page) {
+      foreach ($list_page as $organization) {
+        $organizations_options[$organization['id']] = $organization['name'];
+      }
+    }
+  }
+  elseif (isset($organizations_list['data']) && !empty($organizations_list['data'])) {
+    foreach ($organizations_list['data'] as $organization) {
+      $organizations_options[$organization['id']] = $organization['name'];
+    }
+  }
+  if (count($organizations_options) > 0) {
+    $form["field_organisation_id"]["widget"][0]['value']["#type"] = 'select';
+    $form["field_organisation_id"]["widget"][0]['value']['#options'] = $organizations_options;
+    $form["field_organisation_id"]["widget"][0]['value']['#size'] = 1;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function eventbrite_feeds_feed_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  if (isset($build['field_organisation_id'])) {
+    if (isset($build['field_organisation_id'][0]['#template'])) {
+      $key = $entity->get('field_api_key')->value;
+      $selected_organization = $entity->get('field_organisation_id')->value;
+      /** @var \Drupal\eventbrite\EventbriteClient $eventbrite_client */
+      $eventbrite_client = \Drupal::service('eventbrite.eventbrite_api_service');
+      try {
+        $organizations_list = $eventbrite_client->getOrganizations($key);
+      } catch (\Exception $e) {
+        \Drupal::messenger()->addWarning(t('Wrong Private Token key.'));
+        return;
+      }
+      $output = NULL;
+      if (!empty($organizations_list)) {
+        $break = FALSE;
+        if (isset($organizations_list['pages_data']) && !empty($organizations_list['pages_data'])) {
+          foreach ($organizations_list['data'] as $list_page) {
+            foreach ($list_page as $organization) {
+              if ($selected_organization == $organization['id']) {
+                $output = $organization['id'] . ' - ' . $organization['name'];
+                $break = TRUE;
+                break;
+              }
+            }
+            if ($break) {
+              break;
+            }
+          }
+        }
+        elseif (isset($organizations_list['data']) && !empty($organizations_list['data'])) {
+          foreach ($organizations_list['data'] as $organization) {
+            if ($selected_organization == $organization['id']) {
+              $output = $organization['id'] . ' - ' . $organization['name'];
+              break;
+            }
+          }
+        }
+      }
+      if ($output !== NULL) {
+        $build['field_organisation_id'][0]['#template'] = $output;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function eventbrite_form_node_event_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (isset($form['field_eventbrite_id'])) {
+    /** @var \Drupal\node\NodeInterface $event */
+    $event = $form_state->getFormObject()->getEntity();
+    if ($event && !$event->get('field_eventbrite_id')->isEmpty()) {
+      $form["field_eventbrite_id"]["widget"][0]["value"]["#attributes"]['disabled'] = TRUE;
+    }
+  }
+}

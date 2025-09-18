@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - feeds
+    - options
+id: feeds_feed.field_color
+field_name: field_color
+entity_type: feeds_feed
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: image_accent_color_light_green
+      label: 'NCT Light Green'
+    -
+      value: image_accent_color_dark_green
+      label: 'NCT Dark Green'
+    -
+      value: image_accent_color_purple
+      label: Purple
+    -
+      value: image_accent_color_blue
+      label: Blue
+    -
+      value: image_accent_color_yellow
+      label: Yellow
+    -
+      value: image_accent_color_orange
+      label: Orange
+    -
+      value: image_accent_color_pink
+      label: Pink
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
